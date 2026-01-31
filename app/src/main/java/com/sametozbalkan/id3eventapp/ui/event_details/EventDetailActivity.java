@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.sametozbalkan.id3eventapp.R;
 import com.sametozbalkan.id3eventapp.data.model.Event;
 import com.sametozbalkan.id3eventapp.databinding.FragmentEventDetailBinding;
 
@@ -95,10 +96,26 @@ public class EventDetailActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        binding.toolbar.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.action_share) return true;
+            return id == R.id.action_more;
+        });
+
+        binding.viewPager.post(() -> updateHeader(binding.viewPager.getCurrentItem()));
     }
 
     private void updateHeader(int position) {
         if (currentEvent == null) return;
+
+        binding.toolbar.getMenu().clear();
+
+        if (position == 0) {
+            binding.toolbar.inflateMenu(R.menu.menu_event_participants);
+        } else {
+            binding.toolbar.inflateMenu(R.menu.menu_event_more);
+        }
 
         if (position == 0) {
             binding.headerImageContainer.setVisibility(View.VISIBLE);

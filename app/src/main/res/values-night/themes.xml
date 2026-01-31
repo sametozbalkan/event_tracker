@@ -1,7 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.EventTracker" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+    <style name="Base.Theme.EventTracker"
+        parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/md_theme_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
+
+        <item name="colorSecondary">@color/md_theme_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_onSecondary</item>
+
+        <item name="colorTertiary">@color/md_theme_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_onTertiary</item>
+
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer_dark</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer_dark</item>
+
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant_dark</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant_dark</item>
+
+        <item name="android:colorBackground">@color/md_theme_background</item>
+        <item name="colorOnBackground">@color/md_theme_onBackground_dark</item>
+
+        <item name="colorSurface">@color/md_theme_surface_dark</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface_dark</item>
+
+        <item name="colorError">@color/md_theme_error</item>
     </style>
+
 </resources>

@@ -22,6 +22,7 @@
             app:titleCentered="true"
             app:navigationIcon="@drawable/ic_menu"
             app:navigationIconTint="@android:color/black"
+            app:menu="@menu/menu_event_details"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
