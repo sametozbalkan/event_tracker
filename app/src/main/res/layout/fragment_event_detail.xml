@@ -7,7 +7,6 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        app:layout_scrollFlags="scroll|enterAlways"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,17 +14,19 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIconTint="@android:color/black"
             app:navigationIcon="@drawable/ic_back"
+            app:navigationIconTint="@android:color/black"
             app:titleCentered="true"
-            app:title="Event Details"/>
+            app:title="Event Details"
+            app:layout_scrollFlags="enterAlways"/>
 
         <LinearLayout
             android:id="@+id/tabHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:layout_scrollFlags="scroll|enterAlways">
 
             <TextView
                 android:id="@+id/txtHeaderTitle"
@@ -49,13 +50,14 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

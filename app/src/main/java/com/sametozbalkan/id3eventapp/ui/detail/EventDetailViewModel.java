@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.sametozbalkan.id3eventapp.data.model.Comment;
+import com.sametozbalkan.id3eventapp.data.model.Event;
 import com.sametozbalkan.id3eventapp.data.model.Participant;
 import com.sametozbalkan.id3eventapp.data.repository.CommentRepository;
+import com.sametozbalkan.id3eventapp.data.repository.EventRepository;
 import com.sametozbalkan.id3eventapp.data.repository.ParticipantRepository;
 
 import java.util.ArrayList;
@@ -14,33 +16,21 @@ import java.util.List;
 
 public class EventDetailViewModel extends ViewModel {
 
-    private final CommentRepository commentRepository =
-            new CommentRepository();
+    private final EventRepository repository = new EventRepository();
+    private final CommentRepository commentRepository = new CommentRepository();
+    private final ParticipantRepository participantRepository = new ParticipantRepository();
 
-    private final ParticipantRepository participantRepository =
-            new ParticipantRepository();
-
-    private final MutableLiveData<Long> eventId = new MutableLiveData<>();
-
-    private final MutableLiveData<List<Comment>> comments =
-            new MutableLiveData<>();
-
-    private final MutableLiveData<List<Participant>> allParticipants =
-            new MutableLiveData<>();
-
-    private final MutableLiveData<List<Participant>> filteredParticipants =
-            new MutableLiveData<>();
+    private final MutableLiveData<Event> eventLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Comment>> comments = new MutableLiveData<>();
+    private final MutableLiveData<List<Participant>> allParticipants = new MutableLiveData<>();
+    private final MutableLiveData<List<Participant>> filteredParticipants = new MutableLiveData<>();
 
     public void setEventId(long id) {
-        eventId.setValue(id);
-        loadData(id);
-    }
+        Event event = repository.getById(id);
+        eventLiveData.setValue(event);
 
-    private void loadData(long id) {
         comments.setValue(
-                new ArrayList<>(
-                        commentRepository.getComments(id)
-                )
+                new ArrayList<>(commentRepository.getComments(id))
         );
 
         List<Participant> list =
@@ -48,6 +38,10 @@ public class EventDetailViewModel extends ViewModel {
 
         allParticipants.setValue(list);
         filteredParticipants.setValue(list);
+    }
+
+    public LiveData<Event> getEvent() {
+        return eventLiveData;
     }
 
     public LiveData<List<Comment>> getComments() {
@@ -83,8 +77,8 @@ public class EventDetailViewModel extends ViewModel {
     public void addComment(String message) {
         if (message == null || message.trim().isEmpty()) return;
 
-        Long id = eventId.getValue();
-        if (id == null) return;
+        Event event = eventLiveData.getValue();
+        if (event == null) return;
 
         Comment newComment = new Comment(
                 "You",
@@ -93,12 +87,10 @@ public class EventDetailViewModel extends ViewModel {
                 0
         );
 
-        commentRepository.addComment(id, newComment);
+        commentRepository.addComment(event.getId(), newComment);
 
         comments.setValue(
-                new ArrayList<>(
-                        commentRepository.getComments(id)
-                )
+                new ArrayList<>(commentRepository.getComments(event.getId()))
         );
     }
 }

@@ -11,6 +11,7 @@ public class EventRepository {
     private final List<Event> events = new ArrayList<>();
 
     public EventRepository() {
+
         events.add(new Event(
                 1,
                 "Global Tech Summit 2024",
@@ -57,6 +58,15 @@ public class EventRepository {
             }
         }
         return result;
+    }
+
+    public Event getById(long id) {
+        for (Event e : events) {
+            if (e.getId() == id) {
+                return e;
+            }
+        }
+        return null;
     }
 }
 

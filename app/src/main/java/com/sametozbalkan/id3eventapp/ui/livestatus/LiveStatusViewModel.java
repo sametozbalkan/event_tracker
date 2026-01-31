@@ -7,26 +7,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.sametozbalkan.id3eventapp.data.repository.LiveStatusRepository;
+
+import java.util.List;
+
 public class LiveStatusViewModel extends ViewModel {
+
+    private final LiveStatusRepository repository =
+            new LiveStatusRepository();
 
     private final Handler handler = new Handler(Looper.getMainLooper());
     private Runnable ticker;
 
-    private final String[] statusMessages = new String[]{
-            "Event is about to start",
-            "Keynote is in progress",
-            "Coffee break",
-            "Q&A session started",
-            "Event finished"
-    };
+    private final MutableLiveData<String> statusText = new MutableLiveData<>();
+    private final MutableLiveData<Integer> countdown = new MutableLiveData<>();
 
     private int currentStatusIndex = 0;
     private int secondsLeft = 30;
 
-    private final MutableLiveData<String> statusText = new MutableLiveData<>();
-    private final MutableLiveData<Integer> countdown = new MutableLiveData<>();
+    private final List<String> statusMessages;
 
     public LiveStatusViewModel() {
+        statusMessages = repository.getDefaultStatuses();
         start();
     }
 
@@ -69,13 +71,13 @@ public class LiveStatusViewModel extends ViewModel {
     }
 
     private void advanceStatus() {
-        if (currentStatusIndex < statusMessages.length - 1) {
+        if (currentStatusIndex < statusMessages.size() - 1) {
             currentStatusIndex++;
         }
     }
 
     private void emit() {
-        statusText.setValue(statusMessages[currentStatusIndex]);
+        statusText.setValue(statusMessages.get(currentStatusIndex));
         countdown.setValue(secondsLeft);
     }
 
@@ -88,8 +90,6 @@ public class LiveStatusViewModel extends ViewModel {
 
     @Override
     protected void onCleared() {
-        super.onCleared();
         stop();
     }
 }
-
