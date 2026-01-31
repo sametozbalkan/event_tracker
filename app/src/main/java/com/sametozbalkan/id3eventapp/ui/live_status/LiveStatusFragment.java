@@ -1,4 +1,4 @@
-package com.sametozbalkan.id3eventapp.ui.livestatus;
+package com.sametozbalkan.id3eventapp.ui.live_status;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

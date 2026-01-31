@@ -1,4 +1,4 @@
-package com.sametozbalkan.id3eventapp.ui.livestatus;
+package com.sametozbalkan.id3eventapp.ui.live_status;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -29,7 +29,6 @@ public class LiveStatusViewModel extends ViewModel {
 
     public LiveStatusViewModel() {
         statusMessages = repository.getDefaultStatuses();
-        start();
     }
 
     public LiveData<String> getStatusText() {

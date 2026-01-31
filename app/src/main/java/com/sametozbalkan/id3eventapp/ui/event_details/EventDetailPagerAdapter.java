@@ -1,4 +1,4 @@
-package com.sametozbalkan.id3eventapp.ui.detail;
+package com.sametozbalkan.id3eventapp.ui.event_details;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.sametozbalkan.id3eventapp.ui.comments.CommentsFragment;
-import com.sametozbalkan.id3eventapp.ui.livestatus.LiveStatusFragment;
+import com.sametozbalkan.id3eventapp.ui.live_status.LiveStatusFragment;
 import com.sametozbalkan.id3eventapp.ui.participants.ParticipantsFragment;
 
 public class EventDetailPagerAdapter extends FragmentStateAdapter {

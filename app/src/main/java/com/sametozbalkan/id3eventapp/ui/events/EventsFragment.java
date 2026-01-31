@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.sametozbalkan.id3eventapp.data.model.EventType;
 import com.sametozbalkan.id3eventapp.databinding.FragmentEventsBinding;
-import com.sametozbalkan.id3eventapp.ui.detail.EventDetailActivity;
+import com.sametozbalkan.id3eventapp.ui.event_details.EventDetailActivity;
 
 import java.util.ArrayList;
 
@@ -61,6 +61,7 @@ public class EventsFragment extends Fragment {
         setupRecyclerView();
         setupChips();
         observeEvents();
+        observeSelectedFilter();
     }
 
     private void setupRecyclerView() {
@@ -90,26 +91,33 @@ public class EventsFragment extends Fragment {
         );
     }
 
+    private void observeSelectedFilter() {
+        viewModel.getSelectedFilter().observe(
+                getViewLifecycleOwner(),
+                type -> {
+                    binding.chipAll.setChecked(type == null);
+                    binding.chipToday.setChecked(type == EventType.TODAY);
+                    binding.chipUpcoming.setChecked(type == EventType.UPCOMING);
+                    binding.chipPast.setChecked(type == EventType.PAST);
+                }
+        );
+    }
+
     private void setupChips() {
+        binding.chipAll.setOnClickListener(v ->
+                viewModel.setFilter(null)
+        );
 
-        binding.chipAll.setOnClickListener(v -> {
-            binding.chipAll.setChecked(true);
-            viewModel.showAll();
-        });
+        binding.chipToday.setOnClickListener(v ->
+                viewModel.setFilter(EventType.TODAY)
+        );
 
-        binding.chipToday.setOnClickListener(v -> {
-            binding.chipToday.setChecked(true);
-            viewModel.filterByType(EventType.TODAY);
-        });
+        binding.chipUpcoming.setOnClickListener(v ->
+                viewModel.setFilter(EventType.UPCOMING)
+        );
 
-        binding.chipUpcoming.setOnClickListener(v -> {
-            binding.chipUpcoming.setChecked(true);
-            viewModel.filterByType(EventType.UPCOMING);
-        });
-
-        binding.chipPast.setOnClickListener(v -> {
-            binding.chipPast.setChecked(true);
-            viewModel.filterByType(EventType.PAST);
-        });
+        binding.chipPast.setOnClickListener(v ->
+                viewModel.setFilter(EventType.PAST)
+        );
     }
 }

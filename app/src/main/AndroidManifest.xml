@@ -14,7 +14,7 @@
         android:theme="@style/Theme.EventTracker">
 
         <activity
-            android:name=".ui.detail.EventDetailActivity"
+            android:name=".ui.event_details.EventDetailActivity"
             android:exported="false" />
 
         <activity

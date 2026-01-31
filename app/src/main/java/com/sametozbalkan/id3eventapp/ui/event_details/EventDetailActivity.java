@@ -1,6 +1,7 @@
-package com.sametozbalkan.id3eventapp.ui.detail;
+package com.sametozbalkan.id3eventapp.ui.event_details;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.tabs.TabLayout;
+import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.sametozbalkan.id3eventapp.data.model.Event;
 import com.sametozbalkan.id3eventapp.databinding.FragmentEventDetailBinding;
@@ -99,28 +100,35 @@ public class EventDetailActivity extends AppCompatActivity {
     private void updateHeader(int position) {
         if (currentEvent == null) return;
 
-        switch (position) {
-            case 0:
-                binding.txtHeaderTitle.setText(currentEvent.getTitle());
-                binding.txtHeaderSubtitle.setText(
-                        currentEvent.getEventDate() + " • " +
-                                currentEvent.getDescription()
-                );
-                break;
+        if (position == 0) {
+            binding.headerImageContainer.setVisibility(View.VISIBLE);
+            binding.headerTextContainer.setVisibility(View.GONE);
 
-            case 1:
+            Glide.with(this)
+                    .load(currentEvent.getImageUrl())
+                    .into(binding.imgHeader);
+
+            binding.txtOverlayTitle.setText(currentEvent.getTitle());
+            binding.txtOverlaySubtitle.setText(
+                    currentEvent.getEventDate() + " • " +
+                            currentEvent.getDescription()
+            );
+
+        } else {
+            binding.headerImageContainer.setVisibility(View.GONE);
+            binding.headerTextContainer.setVisibility(View.VISIBLE);
+
+            if (position == 1) {
                 binding.txtHeaderTitle.setText("Comments");
                 binding.txtHeaderSubtitle.setText(
                         "Discussion about " + currentEvent.getTitle()
                 );
-                break;
-
-            case 2:
+            } else {
                 binding.txtHeaderTitle.setText(currentEvent.getTitle());
                 binding.txtHeaderSubtitle.setText(
                         "Live updates from the event"
                 );
-                break;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.sametozbalkan.id3eventapp.ui.detail;
+package com.sametozbalkan.id3eventapp.ui.event_details;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

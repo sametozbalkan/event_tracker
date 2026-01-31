@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.sametozbalkan.id3eventapp.databinding.FragmentCommentsBinding;
-import com.sametozbalkan.id3eventapp.ui.detail.EventDetailViewModel;
+import com.sametozbalkan.id3eventapp.ui.event_details.EventDetailViewModel;
 
 import java.util.ArrayList;
 
