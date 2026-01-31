@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <!-- Pulse Icon -->
+    <FrameLayout
+        android:layout_width="240dp"
+        android:layout_height="240dp">
+
+        <View
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:background="@drawable/bg_pulse_outer"/>
+
+        <View
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_pulse_inner"/>
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_live"
+            android:tint="@android:color/white"/>
+    </FrameLayout>
+
+    <!-- Status -->
+    <TextView
+        android:id="@+id/txtStatusTitle"
+        android:layout_marginTop="24dp"
+        android:text="Event is Live"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- Countdown -->
+    <TextView
+        android:id="@+id/txtNextUpdate"
+        android:layout_marginTop="8dp"
+        android:text="Next update in 30s"
+        android:textSize="14sp"
+        android:textColor="?android:textColorSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- Refresh Button -->
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_marginTop="20dp"
+        android:text="Refresh Now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
