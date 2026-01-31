@@ -47,6 +47,10 @@
         android:text="Next update in 30s"
         android:textSize="14sp"
         android:textColor="?android:textColorSecondary"
+        android:drawableStart="@drawable/ic_time"
+        android:drawableTint="?attr/colorOnSurfaceVariant"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

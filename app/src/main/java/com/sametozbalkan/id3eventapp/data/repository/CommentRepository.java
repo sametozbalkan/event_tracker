@@ -27,7 +27,7 @@ public class CommentRepository {
                         )
                 ),
                 new Comment(
-                        "mert",
+                        "Mert",
                         "Will the keynote be streamed online?",
                         "12m ago",
                         5
@@ -36,7 +36,7 @@ public class CommentRepository {
 
         commentsByEvent.put(2L, new ArrayList<>(List.of(
                 new Comment(
-                        "selin",
+                        "Selin",
                         "Last year's event was amazing 🔥",
                         "1h ago",
                         21
@@ -45,7 +45,7 @@ public class CommentRepository {
 
         commentsByEvent.put(3L, new ArrayList<>(List.of(
                 new Comment(
-                        "salih",
+                        "Salih",
                         "Will the keynote be streamed online?",
                         "15m ago",
                         2
@@ -61,11 +61,7 @@ public class CommentRepository {
     }
 
     public void addComment(long eventId, Comment comment) {
-        List<Comment> list = commentsByEvent.get(eventId);
-        if (list == null) {
-            list = new ArrayList<>();
-            commentsByEvent.put(eventId, list);
-        }
+        List<Comment> list = commentsByEvent.computeIfAbsent(eventId, k -> new ArrayList<>());
         list.add(0, comment);
     }
 }
